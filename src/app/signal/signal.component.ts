@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, effect, signal } from '@angular/core';
 
 @Component({
   selector: 'app-signal',
@@ -13,6 +13,14 @@ export class SignalComponent {
 
   // If we want to apply some logic on signal variable data then we will use computed method.
   doubleCount = computed(() => this.count() * 2)
+
+  constructor() {
+    // We use effect function whenever we want to execute some code when the value of a signal changes.
+    // Make sure you must use signal inside callback function.
+    effect(() => {
+      console.log('count value change', this.count());
+    })
+  }
 
   inc() {
     // Set method is use when value is not depend on previous value.
