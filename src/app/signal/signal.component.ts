@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 
 @Component({
   selector: 'app-signal',
@@ -10,6 +10,9 @@ export class SignalComponent {
 
   // We can give the type of data explicitly using diamond bracket.
   message = signal<string[]>([]);
+
+  // If we want to apply some logic on signal variable data then we will use computed method.
+  doubleCount = computed(() => this.count() * 2)
 
   inc() {
     // Set method is use when value is not depend on previous value.
@@ -29,6 +32,6 @@ export class SignalComponent {
 
   dec() {
     this.message.mutate((prevMsg) => prevMsg.pop())
-    // this.count.update((prev) => prev - 1);
+    this.count.update((prev) => prev - 1);
   }
 }
