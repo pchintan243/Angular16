@@ -3,3 +3,7 @@
     <span>{{count()}}</span>
     <button class="btn btn-danger mx-3" (click)="inc()">+</button>
 </div>
+
+<div *ngFor="let item of message()">
+    <p>Counter Value: {{item}}</p>
+</div>
